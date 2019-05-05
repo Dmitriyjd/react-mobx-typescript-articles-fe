@@ -1,0 +1,11 @@
+.articles-page__control-zone{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: flex-end;
+
+  .control-zone__articles-label{
+    font-size: 45px;
+  }
+
+}

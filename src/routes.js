@@ -1,14 +1,14 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import ArticlesPage from './Components/ArticlesPage/ArticlesPage'
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 
 const Routes = () => {
   return (
-    <Switch>
+    <Router>
       <Route exact path="/articles" component = { ArticlesPage }/>
 
-      <Redirect to="/articles" />
-    </Switch>
+    </Router>
   )
 };
 

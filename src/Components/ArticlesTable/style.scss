@@ -1,0 +1,15 @@
+.articles-table{
+  tr {
+    height: 50px;
+    min-height: 50px;
+
+    th, td {
+      min-height: 50px;
+      vertical-align: middle;
+    }
+  }
+}
+
+.edit-button{
+  margin-right: 15px;
+}

@@ -13,21 +13,29 @@ class ArticlesPage extends PureComponent {
         </div>
         <ArticlesTable data={[
           {
-            _id:"asdasdadasas",
-            body:"adasfwdsfsdgdsfgsd",
-            title:"sefsfsdfdsf",
+            _id:"1",
+            body:"1",
+            title:"1",
+            created_at:"1557089614399",
+            updated_at:"1557089614399",
           },{
-            _id:"asdasdadasas",
-            body:"adasfwdsfsdgdsfgsd",
-            title:"sefsfsdfdsf",
+            _id:"2",
+            body:"2",
+            title:"2",
+            created_at:"1557089614399",
+            updated_at:"1557089614399",
           },{
-            _id:"asdasdadasas",
-            body:"adasfwdsfsdgdsfgsd",
-            title:"sefsfsdfdsf",
+            _id:"3",
+            body:"3",
+            title:"3",
+            created_at:"1557089614399",
+            updated_at:"1557089614399",
           },{
-            _id:"asdasdadasas",
-            body:"adasfwdsfsdgdsfgsd",
-            title:"sefsfsdfdsf",
+            _id:"4",
+            body:"4",
+            title:"4",
+            created_at:"1557089614399",
+            updated_at:"1557089614399",
           },
         ]}/>
       </div>

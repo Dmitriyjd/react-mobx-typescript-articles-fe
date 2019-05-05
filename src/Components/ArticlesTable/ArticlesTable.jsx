@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
+import ModalComponent from "../ModalComponent/ModalComponent";
 
 class ArticlesTable extends PureComponent{
   render() {
@@ -18,7 +19,7 @@ class ArticlesTable extends PureComponent{
         <tbody>
         {this.props.data.map(
           element => (
-            <tr>
+            <tr key={element._id}>
               <th scope="row">{element._id}</th>
               <td>{element.title}</td>
               <td>{element.body}</td>
@@ -30,11 +31,17 @@ class ArticlesTable extends PureComponent{
                   Edit
                 </button>
                 <button
-                  onClick={() => { this.props.onView(element); }}
                   className="btn btn-success"
+                  data-toggle="modal"
+                  data-target={`#modal_${element._id}`}
                 >
                   View
                 </button>
+                <ModalComponent id={`modal_${element._id}`} title={element.title}>
+                  <div>{element.body}</div>
+                  <div>{element.created_at}</div>
+                  <div>{element.updated_at}</div>
+                </ModalComponent>
               </td>
             </tr>
           )
@@ -54,7 +61,6 @@ ArticlesTable.propTypes = {
     })
   ).isRequired,
   onEdit: PropTypes.func.isRequired,
-  onView: PropTypes.func.isRequired,
 };
 
 export default ArticlesTable;

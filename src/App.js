@@ -1,4 +1,6 @@
 import React from 'react';
+import "bootstrap";
+import "bootstrap/scss/bootstrap.scss";
 import HeaderComponent from "./Components/HeaderComponent/HeaderComponent";
 import "bootstrap/scss/bootstrap.scss";
 

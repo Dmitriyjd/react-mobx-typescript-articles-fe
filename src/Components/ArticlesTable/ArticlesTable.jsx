@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import "bootstrap";
-import './style.css'
+import './style.scss';
 
 class ArticlesTable extends PureComponent{
   render() {
+    console.log(this.props);
     return (
-      <table className="table table-borderless">
+      <table className="table table-striped articles-table">
         <thead>
         <tr>
           <th scope="col">id</th>
@@ -25,7 +25,7 @@ class ArticlesTable extends PureComponent{
               <td>
                 <button
                   onClick={() => { this.props.onEdit(element); }}
-                  className="btn btn-warning"
+                  className="btn btn-warning edit-button"
                 >
                   Edit
                 </button>

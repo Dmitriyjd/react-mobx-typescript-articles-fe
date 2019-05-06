@@ -4,8 +4,43 @@ import './style.scss';
 import ModalComponent from "../ModalComponent/ModalComponent";
 
 class ArticlesTable extends PureComponent{
+  renderTableRow = (element) => (
+    <tr key={element._id}>
+      <th scope="row">{element._id}</th>
+      <td>{element.title}</td>
+      <td>{element.body}</td>
+      <td>
+        <button
+          onClick={() => { this.props.onEdit(element); }}
+          className="btn btn-warning edit-button"
+        >
+          Edit
+        </button>
+        <button
+          className="btn btn-success"
+          data-toggle="modal"
+          data-target={`#modal_${element._id}`}
+        >
+          View
+        </button>
+        <ModalComponent id={`modal_${element._id}`} title={element.title}>
+          <div className="articles-modal__content">
+            <div className="articles-modal__body">
+                {element.body}
+              </div>
+            <hr/>
+            <div className="articles-modal__footer">
+              <div>Created: {element.created_at}</div>
+              <div>Updated: {element.updated_at}</div>
+            </div>
+          </div>
+        </ModalComponent>
+      </td>
+    </tr>
+  )
+
+  ;
   render() {
-    console.log(this.props);
     return (
       <table className="table table-striped articles-table">
         <thead>
@@ -17,35 +52,7 @@ class ArticlesTable extends PureComponent{
         </tr>
         </thead>
         <tbody>
-        {this.props.data.map(
-          element => (
-            <tr key={element._id}>
-              <th scope="row">{element._id}</th>
-              <td>{element.title}</td>
-              <td>{element.body}</td>
-              <td>
-                <button
-                  onClick={() => { this.props.onEdit(element); }}
-                  className="btn btn-warning edit-button"
-                >
-                  Edit
-                </button>
-                <button
-                  className="btn btn-success"
-                  data-toggle="modal"
-                  data-target={`#modal_${element._id}`}
-                >
-                  View
-                </button>
-                <ModalComponent id={`modal_${element._id}`} title={element.title}>
-                  <div>{element.body}</div>
-                  <div>{element.created_at}</div>
-                  <div>{element.updated_at}</div>
-                </ModalComponent>
-              </td>
-            </tr>
-          )
-        )}
+          {this.props.data.map(element => this.renderTableRow(element))}
         </tbody>
       </table>
     );

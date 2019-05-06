@@ -6,10 +6,8 @@ import './style.scss';
 
 class ArticlesPage extends PureComponent {
   componentDidMount() {
-    this.updateArticlesList(1, 10);
+    this.props.getArticles(1, 10);
   }
-
-  updateArticlesList = (page, count) => this.props.getArticles(page, count);
 
   render() {
     return (
@@ -20,7 +18,7 @@ class ArticlesPage extends PureComponent {
         </div>
         <ArticlesTable data={this.props.articles}/>
         <div className="articles-pagination__wrapper">
-          <ArticlesTablePagination pagesCount={5} />
+          <ArticlesTablePagination pagesCount={this.props.pageCount} />
         </div>
       </div>
     );
@@ -38,6 +36,7 @@ ArticlesPage.propTypes = {
     })
   ),
   getArticles: PropTypes.func.isRequired,
+  pageCount: PropTypes.number.isRequired,
 };
 
 export  default ArticlesPage;

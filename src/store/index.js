@@ -1,10 +1,9 @@
 import React from 'react';
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore } from 'redux';
 import reducers from '../reducers';
 
 export function configureStore(initialState = {}) {
-  return createStore(reducers, initialState, applyMiddleware(thunk));
+  return createStore(reducers, initialState);
 }
 
 export const store = configureStore();

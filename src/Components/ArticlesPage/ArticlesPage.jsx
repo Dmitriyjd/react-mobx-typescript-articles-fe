@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import ArticlesTable from '../ArticlesTable/ArticlesTable';
+import ArticlesTablePagination from '../ArticlesTablePagination/ArticlesTablePagination'
 
 import './style.scss';
 
@@ -20,8 +22,8 @@ class ArticlesPage extends PureComponent {
             updated_at:"1557089614399",
           },{
             _id:"2",
-            body:"2",
-            title:"2",
+            body:"2".repeat(200),
+            title:"sackhjsbjashbdjbxjhfegbxjfhgxesjfgx",
             created_at:"1557089614399",
             updated_at:"1557089614399",
           },{
@@ -38,6 +40,9 @@ class ArticlesPage extends PureComponent {
             updated_at:"1557089614399",
           },
         ]}/>
+        <div className="articles-pagination__wrapper">
+          <ArticlesTablePagination pagesCount={this.props.pagination.pagesCount} />
+        </div>
       </div>
     );
   }

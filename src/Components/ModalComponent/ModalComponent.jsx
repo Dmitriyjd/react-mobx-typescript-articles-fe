@@ -14,7 +14,7 @@ class ModalComponent extends PureComponent {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body modal-component__body">
               {this.props.children}
             </div>
           </div>

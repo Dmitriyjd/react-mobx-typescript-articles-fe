@@ -9,6 +9,7 @@ class HeaderComponent extends PureComponent{
           className="header-container__logo"
           href="https://pixelplex.io/"
           target="_blank"
+          rel="noopener noreferrer"
         />
       </div>
     );

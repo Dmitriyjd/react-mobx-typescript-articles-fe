@@ -37,9 +37,7 @@ class ArticlesTable extends PureComponent{
         </ModalComponent>
       </td>
     </tr>
-  )
-
-  ;
+  );
   render() {
     return (
       <table className="table table-striped articles-table">

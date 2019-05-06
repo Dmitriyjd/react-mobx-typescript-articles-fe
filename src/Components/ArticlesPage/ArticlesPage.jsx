@@ -2,10 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ArticlesTable from '../ArticlesTable/ArticlesTable';
 import ArticlesTablePagination from '../ArticlesTablePagination/ArticlesTablePagination'
-
 import './style.scss';
 
 class ArticlesPage extends PureComponent {
+  componentDidMount() {
+    this.props.getArticles(1, 10);
+  }
+
   render() {
     return (
       <div>
@@ -13,39 +16,27 @@ class ArticlesPage extends PureComponent {
           <span className="control-zone__articles-label">Articles</span>
           <button className="btn btn-primary">Create</button>
         </div>
-        <ArticlesTable data={[
-          {
-            _id:"1",
-            body:"1",
-            title:"1",
-            created_at:"1557089614399",
-            updated_at:"1557089614399",
-          },{
-            _id:"2",
-            body:"2".repeat(200),
-            title:"sackhjsbjashbdjbxjhfegbxjfhgxesjfgx",
-            created_at:"1557089614399",
-            updated_at:"1557089614399",
-          },{
-            _id:"3",
-            body:"3",
-            title:"3",
-            created_at:"1557089614399",
-            updated_at:"1557089614399",
-          },{
-            _id:"4",
-            body:"4",
-            title:"4",
-            created_at:"1557089614399",
-            updated_at:"1557089614399",
-          },
-        ]}/>
+        <ArticlesTable data={this.props.articles}/>
         <div className="articles-pagination__wrapper">
-          <ArticlesTablePagination pagesCount={this.props.pagination.pagesCount} />
+          <ArticlesTablePagination pagesCount={this.props.pageCount} />
         </div>
       </div>
     );
   }
 }
+
+ArticlesPage.propTypes = {
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
+      updated_at: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+    })
+  ),
+  getArticles: PropTypes.func.isRequired,
+  pageCount: PropTypes.number.isRequired,
+};
 
 export  default ArticlesPage;

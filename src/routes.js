@@ -1,6 +1,6 @@
 import React from 'react';
-import ArticlesPage from './components/ArticlesPage';
-import ArticleCreationPage from './components/ArticleCreationPage';
+import ArticlesPage from './Components/ArticlesPage';
+import ArticleCreationPage from './Components/ArticleCreationPage';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 

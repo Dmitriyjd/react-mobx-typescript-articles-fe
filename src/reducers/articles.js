@@ -1,9 +1,12 @@
-export default (state = [], action) => {
+export default (state = { data: [], pagination: {} }, action) => {
   switch (action.type) {
     case 'GET_ARTICLES_SUCCESS':
-      return action.payload.data;
+      return {
+        data: action.payload.data,
+        pagination: action.payload.pagination,
+      };
     case 'GET_ARTICLES_FAILED':
-      return [];
+      return state;
     default:
       return state;
   }

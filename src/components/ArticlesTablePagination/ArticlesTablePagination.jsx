@@ -5,7 +5,7 @@ class ArticlesTablePagination extends PureComponent {
   renderPaginationItems = () => (
     (new Array(this.props.pagesCount).fill()).map((_, index) => (
       <li className="page-item">
-        <a className="page-link" href="#">{index + 1}</a>
+        <a className="page-link" href={`/articles?page=${index+1}&limit=10`}>{index + 1}</a>
       </li>
     ))
   );

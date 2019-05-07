@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ArticlesTable from '../ArticlesTable/ArticlesTable';
 import ArticlesTablePagination from '../ArticlesTablePagination/ArticlesTablePagination'
@@ -14,7 +15,12 @@ class ArticlesPage extends PureComponent {
       <div>
         <div className="articles-page__control-zone">
           <span className="control-zone__articles-label">Articles</span>
-          <button className="btn btn-primary">Create</button>
+          <Link
+            className="btn btn-primary"
+            to="/articles/create"
+          >
+            Create
+          </Link>
         </div>
         <ArticlesTable data={this.props.articles}/>
         <div className="articles-pagination__wrapper">

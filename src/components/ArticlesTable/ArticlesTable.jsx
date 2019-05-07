@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './style.scss';
 import ModalComponent from "../ModalComponent/ModalComponent";
@@ -10,12 +11,12 @@ class ArticlesTable extends PureComponent{
       <td>{element.title}</td>
       <td>{element.body}</td>
       <td>
-        <button
-          onClick={() => { this.props.onEdit(element); }}
+        <Link
           className="btn btn-warning edit-button"
+          to={`/articles/${element._id}/edit`}
         >
           Edit
-        </button>
+        </Link>
         <button
           className="btn btn-success"
           data-toggle="modal"
@@ -65,7 +66,6 @@ ArticlesTable.propTypes = {
       body: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onEdit: PropTypes.func.isRequired,
 };
 
 export default ArticlesTable;

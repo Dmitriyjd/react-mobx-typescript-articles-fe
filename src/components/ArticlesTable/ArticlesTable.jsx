@@ -5,6 +5,17 @@ import './style.scss';
 import ModalComponent from "../ModalComponent/ModalComponent";
 
 class ArticlesTable extends PureComponent{
+  componentDidMount() {
+    const queryParams = this.props.location.search
+      .slice(1)
+      .split('&')
+      .reduce((buffer, element) => {
+        const [key, value] = element.split('=');
+        return { ...buffer, [key]: value }
+      }, {});
+    this.props.getArticles(queryParams.page, queryParams.limit)
+  }
+
   renderTableRow = (element) => (
     <tr key={element._id}>
       <th scope="row">{element._id}</th>
@@ -39,6 +50,7 @@ class ArticlesTable extends PureComponent{
       </td>
     </tr>
   );
+
   render() {
     return (
       <table className="table table-striped articles-table">
@@ -58,7 +70,9 @@ class ArticlesTable extends PureComponent{
   }
 }
 
-
+ArticlesTable.defaultProps = {
+  articlesList: [],
+};
 
 ArticlesTable.propTypes = {
   articlesList: PropTypes.arrayOf(
@@ -68,6 +82,7 @@ ArticlesTable.propTypes = {
       body: PropTypes.string.isRequired,
     })
   ).isRequired,
+  getArticles: PropTypes.func.isRequired,
 };
 
 export default ArticlesTable;

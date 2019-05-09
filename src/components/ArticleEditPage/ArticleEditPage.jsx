@@ -4,9 +4,44 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 class ArticleEditPage extends PureComponent {
+  state = {
+    title: this.props.gottenArticleById.title,
+    body: this.props.gottenArticleById.body,
+  };
+
+  componentDidMount() {
+    const locationItems = this.props.location.pathname.split('/');
+    const id = locationItems[locationItems.length - 2];
+    this.props.getArticleById(id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.gottenArticleById.title !== this.props.gottenArticleById.title) {
+      this.setState({ title: nextProps.gottenArticleById.title });
+    }
+
+    if (nextProps.gottenArticleById.body !== this.props.gottenArticleById.body) {
+      this.setState({ body: nextProps.gottenArticleById.body });
+    }
+  }
+
+  onChange = ((event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  });
+
+  onSubmit = ((event) => {
+    event.preventDefault();
+    const locationItems = this.props.location.pathname.split('/');
+    const id = locationItems[locationItems.length - 2];
+    this.props.updateArticleById(id, this.state)
+  });
+
   render() {
     return (
-      <form className="article-edit-page">
+      <form
+        className="article-edit-page"
+        onSubmit={this.onSubmit}
+      >
         <span className="article-edit-page__title">
           Edit Article
         </span>
@@ -18,23 +53,25 @@ class ArticleEditPage extends PureComponent {
           <input
             className="title-group__input"
             placeholder="Enter title (required)"
+            name="title"
             required
-          >
-            {this.props.title}
-          </input>
+            defaultValue={this.props.gottenArticleById.title}
+            onChange={this.onChange}
+          />
         </div>
         <div className="article-edit-page__body-group">
           <span className="body-group__label">
             Body:
           </span>
-          <textarea
+          <input
             className="body-group__input"
             placeholder="Enter article`s body(required)"
-            rows = "15"
+            name="body"
             required
+            onChange={this.onChange}
+            defaultValue={this.props.gottenArticleById.body}
           >
-            {this.props.body}
-          </textarea>
+          </input>
         </div>
         <div className="article-edit-page__submit-group">
           <button
@@ -56,8 +93,12 @@ class ArticleEditPage extends PureComponent {
 }
 
 ArticleEditPage.propTypes = {
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string,
+  gottenArticleById: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string,
+  }),
+  getArticleById: PropTypes.func.isRequired,
+  updateArticleById: PropTypes.func.isRequired,
 };
 
 export default ArticleEditPage;

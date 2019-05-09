@@ -1,15 +1,10 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import ArticlesTable from '../ArticlesTable/ArticlesTable';
-import ArticlesTablePagination from '../ArticlesTablePagination/ArticlesTablePagination'
+import ArticlesTable from '../ArticlesTable';
+import ArticlesTablePagination from '../ArticlesTablePagination'
 import './style.scss';
 
 class ArticlesPage extends PureComponent {
-  componentDidMount() {
-    this.props.getArticles(1, 10);
-  }
-
   render() {
     return (
       <div>
@@ -22,27 +17,13 @@ class ArticlesPage extends PureComponent {
             Create
           </Link>
         </div>
-        <ArticlesTable articlesList={this.props.articlesList}/>
+        <ArticlesTable />
         <div className="articles-pagination__wrapper">
-          <ArticlesTablePagination pagesCount={this.props.pageCount} />
+          <ArticlesTablePagination />
         </div>
       </div>
     );
   }
 }
 
-ArticlesPage.propTypes = {
-  articles: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired,
-      updated_at: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
-    })
-  ),
-  getArticles: PropTypes.func.isRequired,
-  pageCount: PropTypes.number.isRequired,
-};
-
-export  default ArticlesPage;
+export default ArticlesPage;

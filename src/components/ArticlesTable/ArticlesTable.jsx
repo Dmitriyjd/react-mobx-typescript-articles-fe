@@ -51,15 +51,17 @@ class ArticlesTable extends PureComponent{
         </tr>
         </thead>
         <tbody>
-          {this.props.data.map(element => this.renderTableRow(element))}
+          {this.props.articlesList.map(element => this.renderTableRow(element))}
         </tbody>
       </table>
     );
   }
 }
 
+
+
 ArticlesTable.propTypes = {
-  data: PropTypes.arrayOf(
+  articlesList: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,

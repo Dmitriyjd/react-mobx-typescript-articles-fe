@@ -16,3 +16,20 @@ export const getArticles = (page, limit) => async dispatch => {
     });
   }
 };
+
+export const createArticle = (userData) => async dispatch => {
+  try {
+    const url = `http://localhost:8080/api/articles`;
+    const body =  userData ;
+    const response = await axios.post(url, body );
+
+    dispatch({
+      type: 'CREATE_ARTICLE_SUCCESS',
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: 'CREATE_ARTICLE_FAILED'
+    });
+  }
+};

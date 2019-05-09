@@ -3,6 +3,33 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 class ArticleCreationPage extends PureComponent {
+  state = {
+    title: "",
+    body: "",
+  };
+
+  constructor(props) {
+    super(props);
+    this.articleCreationTitle = React.createRef();
+    this.articleCreationBody = React.createRef();
+
+  }
+
+  onTitleChange = ((event) => {
+    this.setState({ title: event.target.value });
+  });
+
+  onBodyChange = ((event) => {
+    this.setState({ body: event.target.value });
+  });
+
+  onSubmit = ((event) => {
+    event.preventDefault();
+    this.props.createArticle(this.state);
+    this.articleCreationTitle.current.value = "";
+    this.articleCreationBody.current.value = "";
+});
+
   render() {
     return (
       <form className="article-creation-page">
@@ -15,6 +42,9 @@ class ArticleCreationPage extends PureComponent {
             Title:
           </span>
           <input
+            onChange={this.onTitleChange}
+            name = "title"
+            ref={this.articleCreationTitle}
             className="title-group__input"
             placeholder="Enter title (required)"
             required
@@ -25,6 +55,9 @@ class ArticleCreationPage extends PureComponent {
             Body:
           </span>
           <textarea
+            onChange={this.onBodyChange}
+            name = "body"
+            ref={this.articleCreationBody}
             className="body-group__input"
             placeholder="Enter article`s body"
             rows = "15"
@@ -32,6 +65,7 @@ class ArticleCreationPage extends PureComponent {
         </div>
         <div className="article-creation-page__submit-group">
           <button
+            onClick={this.onSubmit}
             type="submit"
             className="btn btn-success submit-group__submit"
           >

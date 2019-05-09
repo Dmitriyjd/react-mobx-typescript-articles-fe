@@ -1,10 +1,10 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import ArticlesPage from './ArticlesPage';
 import { getArticles } from "../../actions/articles";
 
 const mapStateToProps = state => (
   {
-    articles: state.articles.data,
+    articlesList: state.articles.articlesList,
     pageCount: state.articles.pagination.pageCount,
   }
 );

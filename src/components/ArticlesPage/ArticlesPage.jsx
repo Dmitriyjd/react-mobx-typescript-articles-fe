@@ -22,7 +22,7 @@ class ArticlesPage extends PureComponent {
             Create
           </Link>
         </div>
-        <ArticlesTable data={this.props.articles}/>
+        <ArticlesTable articlesList={this.props.articlesList}/>
         <div className="articles-pagination__wrapper">
           <ArticlesTablePagination pagesCount={this.props.pageCount} />
         </div>
